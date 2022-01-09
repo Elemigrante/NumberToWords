@@ -3,7 +3,7 @@ package com.dmitriyneladnov;
 public class Main {
 
   public static void main(String[] args) {
-    numberToWords(235);
+    numberToWords(0);
   }
 
   public static void numberToWords(int number) {
@@ -17,36 +17,37 @@ public class Main {
 
       switch (lastDigit) {
         case 0:
-          System.out.print("Zero");
+          System.out.print("Zero ");
           break;
         case 1:
-          System.out.print("One");
+          System.out.print("One ");
           break;
         case 2:
-          System.out.print("Two");
+          System.out.print("Two ");
           break;
         case 3:
-          System.out.print("Three");
+          System.out.print("Three ");
           break;
         case 4:
-          System.out.print("Four");
+          System.out.print("Four ");
           break;
         case 5:
-          System.out.print("Five");
+          System.out.print("Five ");
           break;
         case 6:
-          System.out.print("Six");
+          System.out.print("Six ");
           break;
         case 7:
-          System.out.print("Seven");
+          System.out.print("Seven ");
           break;
         case 8:
-          System.out.print("Eight");
+          System.out.print("Eight ");
           break;
         case 9:
-          System.out.print("Nine");
+          System.out.print("Nine ");
           break;
-        default: break;
+        default:
+          break;
       }
       number /= 10;
     }
@@ -58,7 +59,9 @@ public class Main {
 
     while (number != 0) {
       lastDigit = number % 10;
-      reverse = (reverse * 10) + lastDigit;
+      // reverse * 10 will expand reverse number before adding the last digit.
+      // reverse is initialized as 0 so reverse * 10 is 0 * 10, or 0.
+      reverse = reverse * 10 + lastDigit;
       number /= 10;
     }
     return reverse;
@@ -66,11 +69,12 @@ public class Main {
 
   public static int getDigitCount(int number) {
     if (number < 0) return -1;
-    int count = 0;
+    if (number == 0) return 1;
 
+    int count = 0;
     while (number > 0) {
       count++;
-      number /= 10; // exclude digit from number
+      number /= 10; // chop off digit
     }
     return count;
   }
